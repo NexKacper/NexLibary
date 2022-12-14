@@ -1,8 +1,8 @@
 -- This Ui Libary Is Made By NexKacper / Nonee
-local Solaris = Instance.new("ScreenGui")
-Solaris.Name = "dosage's solaris gui"
-Solaris.Parent = game.CoreGui
-Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local NexHub = Instance.new("ScreenGui")
+NexHub.Name = "dosage's NexHub gui"
+NexHub.Parent = game.CoreGui
+NexHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
@@ -245,7 +245,7 @@ function NexHub:New(Config)
     local SectionPreset = game:GetObjects("rbxassetid://7121846230")[1]
     local ContainerPreset = game:GetObjects("rbxassetid://7121886326")[1]
     local MFrame = MainUI.MainFrame
-    MainUI.Parent = Solaris
+    MainUI.Parent = NexHub
     MFrame.TopBar.TopFrameTitle.Text = Config.Name
     MakeDraggable(MFrame.TopBar, MainUI) 
     local oldScript = script
@@ -270,7 +270,7 @@ function NexHub:New(Config)
         local playing = false
         local MarketplaceService = game:GetService("MarketplaceService")
         local MusicFrame, MusicPreset = game:GetObjects("rbxassetid://7296373622")[1], game:GetObjects("rbxassetid://7296615234")[1]
-        MusicFrame.Parent = Solaris
+        MusicFrame.Parent = NexHub
         MusicFrame.ZIndex = 5
         MusicFrame.Visible = NexHub.Settings.ShowMusicOnLaunch
         MusicFrame.Frame.Title.Text = "Not Playing"
