@@ -1,8 +1,8 @@
--- This Ui Libary Is Made By NexKacper / Nonee
-local NexHub = Instance.new("ScreenGui")
-NexHub.Name = "dosage's NexHub gui"
-NexHub.Parent = game.CoreGui
-NexHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+-- This User Interface Library is brought to you by Solaris Software.
+local Solaris = Instance.new("ScreenGui")
+Solaris.Name = "dosage's solaris gui"
+Solaris.Parent = game.CoreGui
+Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
@@ -36,7 +36,7 @@ script = NotificationFrame.NotifScript
 local Notify = loadstring(NotificationFrame.NotifScript.Source)()
 script = oldScript
 
-local NexHub = {
+local Aerval = {
     Themes = {
         Default = {
             MainFrame = Color3.fromRGB(25, 25, 25),
@@ -162,7 +162,7 @@ local NexHub = {
 
 
 local MainUI = game:GetObjects("rbxassetid://7835727566")[1]
-print("NexHub Loaded!")
+print("Aerval Loaded!")
 local function MakeDraggable(topbarobject, object) 
     pcall(function()
 		local dragging, dragInput, mousePos, framePos = false
@@ -214,11 +214,11 @@ function Ripple(Object)
 	end)
 end
 
-function NexHub:Notification(title, desc)
+function Aerval:Notification(title, desc)
     Notify:New(title,desc)
 end    
 
-function NexHub:New(Config)
+function Aerval:New(Config)
     if not isfolder(Config.FolderToSave) then 
         makefolder(Config.FolderToSave)
     end
@@ -229,12 +229,12 @@ function NexHub:New(Config)
     
     if not isfile(Config.FolderToSave .. "/settings.txt") then
         local content = {}
-        for i,v in pairs(NexHub.Settings) do
+        for i,v in pairs(Aerval.Settings) do
             content[i] = v
         end
         writefile(Config.FolderToSave .. "/settings.txt", tostring(http:JSONEncode(content)))
     end    
-    NexKacper.Settings = http:JSONDecode(readfile(Config.FolderToSave .. "/settings.txt"))
+    Aerval.Settings = http:JSONDecode(readfile(Config.FolderToSave .. "/settings.txt"))
 
     local closebindbinding = false
     local fs = false
@@ -245,7 +245,7 @@ function NexHub:New(Config)
     local SectionPreset = game:GetObjects("rbxassetid://7121846230")[1]
     local ContainerPreset = game:GetObjects("rbxassetid://7121886326")[1]
     local MFrame = MainUI.MainFrame
-    MainUI.Parent = NexHub
+    MainUI.Parent = Solaris
     MFrame.TopBar.TopFrameTitle.Text = Config.Name
     MakeDraggable(MFrame.TopBar, MainUI) 
     local oldScript = script
@@ -270,9 +270,9 @@ function NexHub:New(Config)
         local playing = false
         local MarketplaceService = game:GetService("MarketplaceService")
         local MusicFrame, MusicPreset = game:GetObjects("rbxassetid://7296373622")[1], game:GetObjects("rbxassetid://7296615234")[1]
-        MusicFrame.Parent = NexHub
+        MusicFrame.Parent = Solaris
         MusicFrame.ZIndex = 5
-        MusicFrame.Visible = NexHub.Settings.ShowMusicOnLaunch
+        MusicFrame.Visible = Aerval.Settings.ShowMusicOnLaunch
         MusicFrame.Frame.Title.Text = "Not Playing"
         MusicFrame.Frame.Progress.ProgressFrame.Size = UDim2.new(0,0,1,0)
         MusicFrame.Frame.AddBtn.AutoButtonColor = false
@@ -389,14 +389,14 @@ function NexHub:New(Config)
         
         spawn(function()
             while wait() do
-                MusicFrame.Frame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].MainFrame
-                MusicFrame.Frame.TopBar.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
-                MusicFrame.Frame.TopBar.CloseBtn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                MusicFrame.Frame.MusicList.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
-                MusicFrame.Frame.AddBtn.BackgroundColor3 = abuttonhold and NexHub.Themes[NexHub.Settings.Theme].ButtonHold or NexHub.Themes[NexHub.Settings.Theme].Button
-                MusicFrame.Frame.Progress.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Slider
-                MusicFrame.Frame.Progress.ProgressFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].SliderInc
-                MusicFrame.Frame.AddSong.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Textbox
+                MusicFrame.Frame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].MainFrame
+                MusicFrame.Frame.TopBar.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
+                MusicFrame.Frame.TopBar.CloseBtn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                MusicFrame.Frame.MusicList.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
+                MusicFrame.Frame.AddBtn.BackgroundColor3 = abuttonhold and Aerval.Themes[Aerval.Settings.Theme].ButtonHold or Aerval.Themes[Aerval.Settings.Theme].Button
+                MusicFrame.Frame.Progress.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Slider
+                MusicFrame.Frame.Progress.ProgressFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].SliderInc
+                MusicFrame.Frame.AddSong.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Textbox
             end
         end)
     end  
@@ -418,7 +418,7 @@ function NexHub:New(Config)
 
         function SaveSettings()
             local content = {}
-            for i,v in pairs(NexHub.Settings) do
+            for i,v in pairs(Aerval.Settings) do
                 content[i] = v
             end
             writefile(Config.FolderToSave .. "/settings.txt", tostring(http:JSONEncode(content)))
@@ -427,11 +427,11 @@ function NexHub:New(Config)
         
         spawn(function()
             while wait() do
-                SFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].MainFrame
-                SFrame.TopBar.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
-                SFrame.TopBar.CloseBtn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                SFrame.TopBar.TopFrameTitle.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                SFrame.TabHolder.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
+                SFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].MainFrame
+                SFrame.TopBar.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
+                SFrame.TopBar.CloseBtn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                SFrame.TopBar.TopFrameTitle.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                SFrame.TabHolder.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
 
             end
         end)
@@ -467,7 +467,7 @@ function NexHub:New(Config)
             end)
             local TabHold = {}
             function TabHold:ToggleSetting(title, desc, def, path)
-                local value = NexHub.Settings[path] or def
+                local value = Aerval.Settings[path] or def
                 local Toggle = TogglePreset:Clone()
                 Toggle.Parent = Container
                 Toggle.Title.Text = title
@@ -480,7 +480,7 @@ function NexHub:New(Config)
 
                 local function SetValue(val)
                     Tween(val)
-                    NexHub.Settings[path] = val
+                    Aerval.Settings[path] = val
                     value = val
                     SaveSettings()
                 end    
@@ -493,14 +493,14 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                        Toggle.ToggleFrame.ToggleToggled.BackgroundColor3 = value and NexHub.Themes[NexHub.Settings.Theme].ToggleToggled or NexHub.Themes[NexHub.Settings.Theme].MainFrame
-                        Toggle.ToggleFrame.BackgroundColor3 = value and NexHub.Themes[NexHub.Settings.Theme].ToggleToggled or NexHub.Themes[NexHub.Settings.Theme].ToggleFrame
-                        Toggle.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                        Toggle.ToggleFrame.ToggleToggled.BackgroundColor3 = value and Aerval.Themes[Aerval.Settings.Theme].ToggleToggled or Aerval.Themes[Aerval.Settings.Theme].MainFrame
+                        Toggle.ToggleFrame.BackgroundColor3 = value and Aerval.Themes[Aerval.Settings.Theme].ToggleToggled or Aerval.Themes[Aerval.Settings.Theme].ToggleFrame
+                        Toggle.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
             end
             function TabHold:BindSetting(title, desc, def, path)
-                local value = NexHub.Settings[path] or def
+                local value = Aerval.Settings[path] or def
                 local Bind = BindPreset:Clone()
                 Bind.Parent = Container
                 Bind.Title.Text = title
@@ -511,7 +511,7 @@ function NexHub:New(Config)
                     value = val or value
                     value = value.Name or value
                     Bind.BText.Text = value
-                    NexHub.Settings[path] = value
+                    Aerval.Settings[path] = value
                     SaveSettings()
                 end    
                 SetValue(value)
@@ -545,16 +545,16 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                        Bind.Desc.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                        Bind.BText.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                        Bind.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                        Bind.Desc.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                        Bind.BText.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                        Bind.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
             
             end    
             function TabHold:Dropdown(title, desc, list, def, path)
                 local opened = false
-                local value = NexHub.Settings[path] or def
+                local value = Aerval.Settings[path] or def
                 local Dropdown = DropdownPreset:Clone()
                 Dropdown.Parent = Container
                 Dropdown.Title.Text = title
@@ -589,14 +589,14 @@ function NexHub:New(Config)
 
                         Option.MouseButton1Click:Connect(function()
                             value = option
-                            NexHub.Settings[path] = value
+                            Aerval.Settings[path] = value
                             Dropdown.Main.Current.Text = value
                             SaveSettings()
                         end)
 
                         spawn(function()
                             while wait() do
-                               Option.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor       
+                               Option.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor       
                             end
                         end)
                     end   
@@ -604,8 +604,8 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                        Dropdown.Main.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
-                        Dropdown.Main.Holder.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
+                        Dropdown.Main.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
+                        Dropdown.Main.Holder.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
                     end
                 end)
                 AddOptions(list)
@@ -614,7 +614,7 @@ function NexHub:New(Config)
         end   
         
         local general = Settings:Tab("General")
-        general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load NexHub", true, "ShowMusicOnLaunch")
+        general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load Aerval", true, "ShowMusicOnLaunch")
         general:BindSetting("Close Bind", "Hides/Shows the main window when pressed.", Enum.KeyCode.RightControl, "CloseBind")
         
         local appearance = Settings:Tab("Appearance")
@@ -664,7 +664,7 @@ function NexHub:New(Config)
     function SearchConstructor()
         function StitchElements()
             local elms = {}
-            for i,v in next, NexHub.CurrentTab:GetDescendants() do
+            for i,v in next, Aerval.CurrentTab:GetDescendants() do
                 if string.find(v.Name, "element") then
                     table.insert(elms, v)        
                 end
@@ -691,7 +691,7 @@ function NexHub:New(Config)
     
 
 	UserInputService.InputBegan:Connect(function(Input)
-		if (Input.KeyCode.Name == NexHub.Settings.CloseBind or Input.UserInputType.Name == NexHub.Settings.CloseBind) and not closebindbinding then
+		if (Input.KeyCode.Name == Aerval.Settings.CloseBind or Input.UserInputType.Name == Aerval.Settings.CloseBind) and not closebindbinding then
             uitoggled = not uitoggled
             MainUI.Visible = uitoggled
 		end
@@ -699,36 +699,36 @@ function NexHub:New(Config)
 
     spawn(function()
         while wait() do
-            MFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].MainFrame
-            MFrame.TopBar.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
-            MFrame.TopBar.ButtonHolder.CloseBtn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.ButtonHolder.MenuBtn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.ButtonHolder.SearchBtn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.TabListBtn.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.TopFrameTitle.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TabMenu.Menu.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Menu
-            MFrame.TabMenu.Menu.Top.MenuCloseBtn.ImageLabel.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.ButtonHolder.SearchBtn.TextBox.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].MainFrame
-            MFrame.TopBar.ButtonHolder.SearchBtn.TextBox.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.ButtonHolder.SearchBtn.TextBox.PlaceholderColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-            MFrame.TopBar.ButtonHolder.MenuBtn.MenuFrame.Frame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].TopBar
+            MFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].MainFrame
+            MFrame.TopBar.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
+            MFrame.TopBar.ButtonHolder.CloseBtn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.ButtonHolder.MenuBtn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.ButtonHolder.SearchBtn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.TabListBtn.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.TopFrameTitle.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TabMenu.Menu.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Menu
+            MFrame.TabMenu.Menu.Top.MenuCloseBtn.ImageLabel.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.ButtonHolder.SearchBtn.TextBox.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].MainFrame
+            MFrame.TopBar.ButtonHolder.SearchBtn.TextBox.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.ButtonHolder.SearchBtn.TextBox.PlaceholderColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+            MFrame.TopBar.ButtonHolder.MenuBtn.MenuFrame.Frame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].TopBar
         end
     end)
 
-    function NexHub:LoadCfg(cfg)
+    function Aerval:LoadCfg(cfg)
         local content = http:JSONDecode(cfg)
         table.foreach(content, function(a,b)
-            if NexHub.Flags[a] then
-                spawn(function() NexHub.Flags[a]:Set(b) end)
+            if Aerval.Flags[a] then
+                spawn(function() Aerval.Flags[a]:Set(b) end)
             else
                 warn("cfg loader - could not find", a ,b )
             end
         end)
     end
     
-    function NexHub:SaveCfg(name)
+    function Aerval:SaveCfg(name)
         local content = {}
-        for i,v in pairs(NexHub.Flags) do
+        for i,v in pairs(Aerval.Flags) do
             content[i] = v.Value
         end
         writefile(Config.FolderToSave .. "/configs/" .. name .. ".txt", tostring(http:JSONEncode(content)))
@@ -754,13 +754,13 @@ function NexHub:New(Config)
             Tab.UIPadding.PaddingLeft = UDim.new(0,10)
             Tab.TextTransparency = 0
             Tab.BackgroundTransparency = 0  
-            NexHub.CurrentTab = Container  
+            Aerval.CurrentTab = Container  
         end    
 
         spawn(function()
             while wait() do
-                Tab.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                Tab.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].TabToggled
+                Tab.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                Tab.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].TabToggled
                 Container.CanvasSize = UDim2.new(0,0,0,Container.UIListLayout.AbsoluteContentSize.Y + 26)
             end
         end)
@@ -797,7 +797,7 @@ function NexHub:New(Config)
 
             spawn(function()
                 while wait() do
-                    Section.SectionTitle.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                    Section.SectionTitle.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     Section.Size = UDim2.new(0.9,0,0,Section.UIListLayout.AbsoluteContentSize.Y)
                 end
             end)
@@ -823,8 +823,8 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                       Button.BackgroundColor3 = Holding and NexHub.Themes[NexHub.Settings.Theme].ButtonHold or NexHub.Themes[NexHub.Settings.Theme].Button
-                       Button.ButtonText.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       Button.BackgroundColor3 = Holding and Aerval.Themes[Aerval.Settings.Theme].ButtonHold or Aerval.Themes[Aerval.Settings.Theme].Button
+                       Button.ButtonText.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
@@ -849,15 +849,15 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                        ToggleMain.ToggleFrame.ToggleToggled.BackgroundColor3 = Toggle.Value and NexHub.Themes[NexHub.Settings.Theme].ToggleToggled or NexHub.Themes[NexHub.Settings.Theme].Toggle
-                        ToggleMain.ToggleFrame.BackgroundColor3 = Toggle.Value and NexHub.Themes[NexHub.Settings.Theme].ToggleToggled or NexHub.Themes[NexHub.Settings.Theme].ToggleFrame
-                        ToggleMain.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Toggle
-                        ToggleMain.ToggleText.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                        ToggleMain.ToggleFrame.ToggleToggled.BackgroundColor3 = Toggle.Value and Aerval.Themes[Aerval.Settings.Theme].ToggleToggled or Aerval.Themes[Aerval.Settings.Theme].Toggle
+                        ToggleMain.ToggleFrame.BackgroundColor3 = Toggle.Value and Aerval.Themes[Aerval.Settings.Theme].ToggleToggled or Aerval.Themes[Aerval.Settings.Theme].ToggleFrame
+                        ToggleMain.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Toggle
+                        ToggleMain.ToggleText.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
 				Toggle:Set(def)
-                NexHub.Flags[flag] = Toggle
+                Aerval.Flags[flag] = Toggle
                 return Toggle
             end    
             function ItemHold:Slider(text,min,max,start,inc,flag,callback)
@@ -891,17 +891,17 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                       SliderMain.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Slider
-                       SliderMain.SliderFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].SliderBar
-                       SliderMain.SliderFrame.SliderCurrentFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].SliderInc
-                       SliderMain.SliderText.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                       SliderMain.SliderVal.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       SliderMain.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Slider
+                       SliderMain.SliderFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].SliderBar
+                       SliderMain.SliderFrame.SliderCurrentFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].SliderInc
+                       SliderMain.SliderText.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                       SliderMain.SliderVal.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
 
                 Slider:Set(start)
-                NexHub.Flags[flag] = Slider
+                Aerval.Flags[flag] = Slider
                 return Slider
             end    
             function ItemHold:Dropdown(text,list,def,flag,callback)
@@ -935,8 +935,8 @@ function NexHub:New(Config)
 
                         spawn(function()
                             while wait() do
-                               Option.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].DropdownItem
-                               DropMain.Btn.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                               Option.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].DropdownItem
+                               DropMain.Btn.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                             end
                         end)
                     end   
@@ -968,15 +968,15 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                       DropMain.Btn.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Dropdown
-                       DropMain.Btn.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                       DropMain.Btn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       DropMain.Btn.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Dropdown
+                       DropMain.Btn.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                       DropMain.Btn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
                 Dropdown:Refresh(list,false)
                 Dropdown:Set(def)
-                NexHub.Flags[flag] = Dropdown
+                Aerval.Flags[flag] = Dropdown
                 return Dropdown
             end   
             function ItemHold:MultiDropdown(text,list,def,flag,callback)
@@ -1016,8 +1016,8 @@ function NexHub:New(Config)
 
                         spawn(function()
                             while wait() do
-                               Option.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].DropdownItem
-                               DropMain.Btn.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                               Option.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].DropdownItem
+                               DropMain.Btn.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                             end
                         end)
                     end   
@@ -1049,15 +1049,15 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                       DropMain.Btn.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Dropdown
-                       DropMain.Btn.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                       DropMain.Btn.Ico.ImageColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       DropMain.Btn.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Dropdown
+                       DropMain.Btn.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                       DropMain.Btn.Ico.ImageColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
                 Dropdown:Refresh(list,false)
                 Dropdown:Set(def)
-                NexHub.Flags[flag] = Dropdown
+                Aerval.Flags[flag] = Dropdown
                 return Dropdown
             end    
             function ItemHold:Colorpicker(text,preset,flag,callback)
@@ -1145,8 +1145,8 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                       ColorPreset.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Colorpicker
-                       ColorPreset.Btn.Colorpicker.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       ColorPreset.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Colorpicker
+                       ColorPreset.Btn.Colorpicker.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
@@ -1166,8 +1166,8 @@ function NexHub:New(Config)
                 
                 spawn(function()
                     while wait() do
-                       LabelFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Label
-                       LabelFrame.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       LabelFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Label
+                       LabelFrame.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
@@ -1207,10 +1207,10 @@ function NexHub:New(Config)
                 
                 spawn(function()
                     while wait() do
-                       TextboxFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Textbox
-                       TextboxFrame.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                       TextboxFrame.Box.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].TextboxFrame
-                       TextboxFrame.Box.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       TextboxFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Textbox
+                       TextboxFrame.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                       TextboxFrame.Box.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].TextboxFrame
+                       TextboxFrame.Box.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
                 return Textbox
@@ -1275,14 +1275,14 @@ function NexHub:New(Config)
 
                 spawn(function()
                     while wait() do
-                       BindFrame.BackgroundColor3 = NexHub.Themes[NexHub.Settings.Theme].Bind
-                       BindFrame.Title.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
-                       BindFrame.BText.TextColor3 = NexHub.Themes[NexHub.Settings.Theme].TextColor
+                       BindFrame.BackgroundColor3 = Aerval.Themes[Aerval.Settings.Theme].Bind
+                       BindFrame.Title.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
+                       BindFrame.BText.TextColor3 = Aerval.Themes[Aerval.Settings.Theme].TextColor
                     end
                 end)
 
 				Bind:Set(preset)
-                NexHub.Flags[flag] = Bind
+                Aerval.Flags[flag] = Bind
                 return Bind
             end    
             return ItemHold
@@ -1291,4 +1291,4 @@ function NexHub:New(Config)
     end 
     return TabHolder
 end    
-return NexHub
+return Aerval
