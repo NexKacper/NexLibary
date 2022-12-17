@@ -129,6 +129,7 @@ function a7() -- Auto Re - Execute
 	wait(1)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/NexKacper/NexLibary/main/NexLibary.lua"))()
 	wait(15)
+    end
 end
 
 function a5() -- Auto Wheel Spin
