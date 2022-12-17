@@ -125,11 +125,8 @@ end
 
 function a7() -- Auto Re - Execute
 	while _G.a7 == true do
-	OrionLib:Destroy()
-	wait(1)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/NexKacper/NexLibary/main/NexLibary.lua"))()
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/NexKacper/NexLibary/main/NexLibary.lua")()
 	wait(15)
-    end
 end
 
 function a5() -- Auto Wheel Spin
