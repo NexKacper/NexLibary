@@ -125,7 +125,7 @@ end
 
 function a7() -- Auto Re - Execute
     while _G.a7 == true do
-    wait(1800)
+    wait(900)
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/NexKacper/NexLibary/main/NexLibary.lua")()
 	wait(5)
 	end
