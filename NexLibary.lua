@@ -125,8 +125,11 @@ end
 
 function a7() -- Auto Re - Execute
     while _G.a7 == true do
+    wait(15)
+    OrionLib:Destroy()
+    wait(1)
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/NexKacper/NexLibary/main/NexLibary.lua")()
-	wait(15)
+	wait(5)
 	end
 end
 
